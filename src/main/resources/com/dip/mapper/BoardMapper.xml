@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dip.mapper.BoardMapper">
+	
+    <!-- 검색 조건문 -->
+    <sql id="criteria">
+        <trim prefix="where (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like concat('%',#{keyword},'%') 
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            content like concat('%',#{keyword},'%') 
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            writer like concat('%',#{keyword},'%')
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    </sql>
+	
+	<!-- 게시물 전체조회 -->
+	<select id="getList" resultType="com.dip.entity.BoardVO">
+	select * from (
+		select bno, title, writer, regdate, updatedate, likecnt
+		from tbl_board
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+		order by bno desc) as T1
+	order by bno desc
+	limit  #{skip}, #{amount}
+	</select>
+	
+	<!-- 게시물 등록 -->
+	<insert id="insert">
+		insert into tbl_board (title, content, writer)
+		values (#{title}, #{content}, #{writer})
+	</insert>
+
+	<!-- 게시물 상세조회 -->
+	<select id="read" resultType="com.dip.entity.BoardVO">
+		select * from tbl_board where bno = #{bno}
+	</select>
+
+	
+	<!-- 게시물 삭제 -->
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+	
+	<!-- 게시물 수정 -->
+	<update id="update">
+		update tbl_board 
+		set title = #{title},
+		content = #{content},
+		writer = #{writer}
+		where bno = #{bno}
+	</update>
+	
+	
+	<!-- 게시물 총 갯수 -->
+	<select id="count" resultType="int">
+	 select count(*) from tbl_board
+	 
+	 <if test="keyword != null">
+	 	<include refid="criteria"></include>
+	 </if>
+	 
+	</select>
+	
+</mapper>

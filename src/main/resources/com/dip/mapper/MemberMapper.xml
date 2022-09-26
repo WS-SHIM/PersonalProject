@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dip.mapper.MemberMapper">
+  
+  <select id="registerCheck" resultType="com.dip.entity.Member">
+    select * from mem_tbl where memID=#{memID}
+  </select>
+  
+  <select id="NameCheck" resultType="com.dip.entity.Member">
+    select * from mem_tbl where memName=#{memName}
+  </select>
+  
+  <insert id="register" parameterType="com.dip.entity.Member">
+     insert into
+     mem_tbl(memID,memPassword,memName,memAge,memGender,memEmail)
+     values(#{memID},#{memPassword},#{memName},#{memAge},#{memGender},#{memEmail})
+  </insert>
+  
+  <select id="memLogin" parameterType="com.dip.entity.Member" 
+                        resultType="com.dip.entity.Member">
+     select * from mem_tbl 
+     where memID=#{memID} and memPassword=#{memPassword}
+  </select>
+  
+  <update id="memUpdate" parameterType="com.dip.entity.Member">
+     update mem_tbl set memPassword=#{memPassword}, memName=#{memName}, 
+            memAge=#{memAge},memGender=#{memGender},memEmail=#{memEmail} 
+            where memID=#{memID}      
+  </update>
+  
+  <select id="getMember" resultType="com.dip.entity.Member">
+     select * from mem_tbl where memID=#{memID}
+  </select>  
+  
+</mapper>

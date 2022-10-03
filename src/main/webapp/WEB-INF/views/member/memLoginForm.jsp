@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>오늘 뭐먹지?</title>
+  <title>오늘 뭐 먹지?</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -63,8 +63,8 @@
 	    </div>	
 	  </div>
 	</div>   
-    <div class="panel-footer">Dip.Student.WooSeok</div>
   </div>
+  <div class="panel-footer">Dip.Student.WooSeok</div>
 </div>
 
 </body>

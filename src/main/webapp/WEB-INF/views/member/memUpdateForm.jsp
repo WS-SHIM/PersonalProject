@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>오늘 뭐 먹지?</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -33,16 +33,16 @@
     function NameCheck(){
         var memName=$("#memName").val();
         $.ajax({
-     	   url : "${contextPath}/memRegisterCheck.do",
+     	   url : "${contextPath}/memNameCheck.do",
      	   type : "get",
-     	   data : { "memID" : memID},
+     	   data : { "memName" : memName},
      	   success : function(result){
      		   // 중복유무 출력(result=1 : 사용할수있는 아이디, 0 : 사용할수없는 아이디)
      		   if(result==1){
-     			  $("#checkMessage").html("사용할 수 있는 아이디입니다.");
+     			  $("#checkMessage").html("사용할 수 있는 이름입니다.");
      			  $("#checkType").attr("class","modal-content panel-success");
      		   }else{
-     			  $("#checkMessage").html("사용할 수 없는 아이디입니다."); 
+     			  $("#checkMessage").html("사용할 수 없는 이름입니다."); 
      			  $("#checkType").attr("class","modal-content panel-warning");
      		   }
      		   $("#myModal").modal("show");
@@ -85,8 +85,7 @@
            </tr>
             <tr>
              <td style="width: 110px; vertical-align: middle;">사용자 이름</td>
-             <td colspan="2"><input id="memName" name="memName" class="form-control" type="text" maxlength="20" placeholder="이름을 입력하세요." value="${mvo.memName}"/></td>
-             <td style="width: 110px;"><button type="button" class="btn btn-primary btn-sm" onclick="NameCheck()">중복확인</button></td>               
+             <td colspan="2"><input id="memName" name="memName" class="form-control" type="text" maxlength="20" value="${mvo.memName}"/></td>
            </tr>
            <tr>
              <td style="width: 110px; vertical-align: middle;">나이</td>
@@ -140,8 +139,9 @@
 	    </div>	
 	  </div>
 	</div>    
-    <div class="panel-footer">Dip.Student.WooSeok</div>
   </div>
+  <div class="panel-footer">Dip.Student.WooSeok</div>
 </div>
+
 </body>
 </html>

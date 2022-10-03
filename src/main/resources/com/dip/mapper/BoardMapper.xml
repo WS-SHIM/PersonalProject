@@ -23,10 +23,10 @@
         </trim>
     </sql>
 	
-	<!-- 게시물 전체조회 -->
+	<!-- 맛집공유 게시물 전체조회 -->
 	<select id="getList" resultType="com.dip.entity.BoardVO">
 	select * from (
-		select bno, title, writer, regdate, updatedate, likecnt
+		select bno, title, writer, regdate, updatedate, likecnt, filename
 		from tbl_board
 		<if test="keyword != null">
 			<include refid="criteria"></include>
@@ -36,24 +36,79 @@
 	limit  #{skip}, #{amount}
 	</select>
 	
-	<!-- 게시물 등록 -->
+	<!-- 맛집 추천게시물 전체조회 -->
+	<select id="getList2" resultType="com.dip.entity.BoardVO2">
+	select * from (
+		select bno, title, menu, address, tel, time, filename
+		from tbl_board2
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+		order by bno desc) as T1
+	order by bno desc
+	limit  #{skip}, #{amount}
+	</select>
+	
+	
+	<!-- 맛집 공유 게시물 등록 -->
 	<insert id="insert">
-		insert into tbl_board (title, content, writer)
-		values (#{title}, #{content}, #{writer})
+		insert into tbl_board (title, content, writer, filename)
+		values (#{title}, #{content}, #{writer}, #{fileName})
+	</insert>
+	
+	<!-- 맛집 추천 게시물 등록 -->
+	<insert id="insert2">
+		insert into tbl_board2 (title, menu, address, tel, time, filename)
+		values (#{title}, #{menu}, #{address}, #{tel}, #{time}, #{fileName})
 	</insert>
 
-	<!-- 게시물 상세조회 -->
+	<!-- 맛집 공유 게시물 상세조회 -->
 	<select id="read" resultType="com.dip.entity.BoardVO">
 		select * from tbl_board where bno = #{bno}
 	</select>
-
 	
-	<!-- 게시물 삭제 -->
+	<!-- 맛집 추천 게시물 상세조회 -->
+	<select id="read2" resultType="com.dip.entity.BoardVO2">
+		select * from tbl_board2 where bno = #{bno}
+	</select>
+	
+	
+	<insert id="insertBoardLike">
+            INSERT INTO tbl_like (bno, memName)
+            VALUES (#{bno}, #{memName})
+    </insert>
+
+    <delete id="deleteBoardLike">
+        DELETE FROM tbl_like
+        WHERE bno = #{bno} AND memName = #{memName}
+    </delete>
+
+    <select id="updateBoardLike">
+        UPDATE tbl_board
+        SET likecnt = 
+        (SELECT COUNT(*) FROM tbl_like
+        WHERE bno = #{bno})
+        WHERE bno = #{bno}
+    </select>
+
+    <select id="getBoardLike" resultType="int">
+        SELECT COUNT(lno) FROM tbl_like WHERE bno = #{bno} AND memName = #{memName}
+    </select>
+	
+	
+	
+	
+	<!-- 맛집 공유 게시물 삭제 -->
 	<delete id="delete">
 		delete from tbl_board where bno = #{bno}
 	</delete>
 	
-	<!-- 게시물 수정 -->
+	<!-- 맛집 추천 게시물 삭제 -->
+	<delete id="delete2">
+		delete from tbl_board2 where bno = #{bno}
+	</delete>
+	
+	<!-- 맛집 공유 게시물 수정 -->
 	<update id="update">
 		update tbl_board 
 		set title = #{title},
@@ -62,10 +117,31 @@
 		where bno = #{bno}
 	</update>
 	
+	<!-- 맛집 추천 게시물 수정 -->
+	<update id="update2">
+		update tbl_board2 
+		set title = #{title},
+		menu = #{menu},
+		address = #{address},
+		tel = #{tel},
+		time = #{time}
+		where bno = #{bno}
+	</update>
 	
-	<!-- 게시물 총 갯수 -->
+	
+	<!-- 맛집 공유 게시물 총 갯수 -->
 	<select id="count" resultType="int">
 	 select count(*) from tbl_board
+	 
+	 <if test="keyword != null">
+	 	<include refid="criteria"></include>
+	 </if>
+	 
+	</select>
+	
+	<!-- 맛집 추천 게시물 총 갯수 -->
+	<select id="count2" resultType="int">
+	 select count(*) from tbl_board2
 	 
 	 <if test="keyword != null">
 	 	<include refid="criteria"></include>

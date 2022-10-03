@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐먹지?</title>
+<title>오늘 뭐 먹지?</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -20,7 +20,7 @@
 		<div class="panel-heading">
 			<button onclick="location.href='/board/register'" type="button" class="btn btn-primary pull-right">게시글 작성</button>
 		</div>
-	</c:if>
+	
 <table class="table table-bordered table-hover">
  <thead>
   <tr>
@@ -46,7 +46,6 @@
 	</c:forEach>
  </tbody>
 </table>
-
 <div class="search_wrap">
    <div class="search_area">
  		<select name="type">
@@ -80,6 +79,8 @@
 </c:if>
 </ul>
 </div>
+<br><br><br>
+<div class="panel-footer">Dip.Student.WooSeok</div>
 </div>
 <!-- end Pagination -->
 <form id="actionForm" action="/board/list" method="get">
@@ -88,6 +89,14 @@
 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 	<input type="hidden" name="type" value="${pageMaker.cri.type}">
 </form>
+</c:if>
+<c:if test="${empty mvo}">
+<div style="text-align: center; font-size: 2.0em; padding : 200px 0"  >
+로그인 후 이용가능합니다. <br><br><br>
+<a href="/memLoginForm.do">로그인으로 이동</a>
+</div>
+</c:if>
+
 
 <script type="text/javascript">
 var actionForm = $("#actionForm");

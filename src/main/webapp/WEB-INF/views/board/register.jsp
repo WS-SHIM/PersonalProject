@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐먹지?</title>
+<title>오늘 뭐 먹지?</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -17,7 +17,7 @@
 <div class="container">
 <%@ include file="../include/nav.jsp" %>
  <div class="panel-heading">
-	<form method="post">
+	<form method="post" enctype="multipart/form-data">
 		<div class="form-group">
 		 <label>제목</label><input type="text" name="title" class="form-control" />
 		</div>
@@ -30,11 +30,17 @@
 		<label>내용</label><textarea rows="3" name="content" class="form-control"></textarea>
 		</div>
 		
+		<div class="form-group">
+			<label>사진업로드</label><input type="file" name="uploadFile"/>
+		</div>
+		
+		
 		<button type="submit" class="btn btn-primary">등록</button>
 		<button type="reset" class="btn btn-warning">취소</button>
 		<button type="button" class="btn btn-info" onclick="location.href='/board/list'">리스트</button>
 	</form>
  </div>
+ <div class="panel-footer">Dip.Student.WooSeok</div>
 </div>
 
 </body>

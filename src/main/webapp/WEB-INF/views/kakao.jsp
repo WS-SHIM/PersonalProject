@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오늘 뭐 먹지?</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 
@@ -41,6 +41,7 @@
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
+		<br><br>
 		<div class="panel-footer">Dip.Student.WooSeok</div>
 	</div>
 	<script>

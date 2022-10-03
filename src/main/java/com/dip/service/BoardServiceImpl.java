@@ -1,13 +1,12 @@
 package com.dip.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dip.entity.BoardVO;
+import com.dip.entity.BoardVO2;
 import com.dip.entity.Criteria;
 import com.dip.entity.Like;
 import com.dip.mapper.BoardMapper;
@@ -49,6 +48,58 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int count(Criteria cri) {
 		return mapper.count(cri);
+	}
+
+	@Override
+	public int getBoardLike(Like like) {
+		return mapper.getBoardLike(like);
+	}
+
+	@Override
+	public void insertBoardLike(Like like) {
+		mapper.insertBoardLike(like);
+		mapper.updateBoardLike(like.getBno());
+	}
+
+	@Override
+	public void deleteBoardLike(Like like) {
+		mapper.deleteBoardLike(like);
+		mapper.updateBoardLike(like.getBno());
+	}
+
+	@Override
+	public void updateBoardLike(int bno) {
+		mapper.updateBoardLike(bno);
+	}
+
+	@Override
+	public List<BoardVO2> getList2(Criteria cri) {
+		return mapper.getList2(cri);
+	}
+
+	@Override
+	public void register2(BoardVO2 board2) {
+		mapper.insert2(board2);
+	}
+
+	@Override
+	public BoardVO2 read2(int bno) {
+		return mapper.read2(bno);
+	}
+
+	@Override
+	public void modify2(BoardVO2 board2) {
+		mapper.update2(board2);
+	}
+
+	@Override
+	public void remove2(int bno) {
+		mapper.delete2(bno);
+	}
+
+	@Override
+	public int count2(Criteria cri) {
+		return mapper.count2(cri);
 	}
 
 

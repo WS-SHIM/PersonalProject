@@ -82,9 +82,9 @@ function getReplies() {
 	  $.getJSON("${path}/reply/all/" + bno, function(data) {
 	        var str = "";
 	        $.each(data,function (index,obj) {
-	            str    +="<li data-reply_no='" + obj.rno + "' class='replyLi'>"
-	            str    +="<p class='reply_text'> 내용 : " + obj.content + "</p>"
-	            str    +="<p class='reply_writer'> 작성자 : " + obj.writer + "</p>"
+	            str    +="<li data-reply_no='" + obj.rno + "' class='replyLi' style='list-style:none;'>"
+	            str    +="<p class='reply_writer'>작성자 : " + obj.writer + "</p>"
+	            str    +="<p class='reply_text'>"+obj.content + "</p>"
 	            if("${mvo.memName}"==obj.writer){
 	            	  str+="<button type='button' class='btn btn-xs btn-success' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
 	      	          str+="</li>"

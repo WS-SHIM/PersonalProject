@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐먹지?</title>
+<title>오늘 뭐 먹지?</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -57,6 +57,8 @@
 		</form>
   </div>
  </div>
+ <div class="panel-footer">Dip.Student.WooSeok</div>
 </div>
+
 </body>
 </html>

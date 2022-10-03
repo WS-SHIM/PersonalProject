@@ -63,13 +63,6 @@
 <br>
 <br>
 
-추천맛집조회 & 상세조회
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/110947438/193510934-ccb93b84-db62-429b-a68e-473a493541c5.png">
-</p>
-
-<br>
-<br>
 
 게시글 검색기능 & 게시글 추천기능
 <p align="center">
